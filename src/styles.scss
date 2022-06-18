@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 0 15px;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+}
+
+ul {
+    list-style: none;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin: 0 -5px;
+}
+
+.button {
+    display: flex;
+    margin: 0 5px 5px;
+    background: none;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.4);
+    cursor: pointer;
+    &.button_remove {
+        background: url('./assets/icons/remove-icon.svg') no-repeat;
+    }
+    &.button_edit {
+        background: url('./assets/icons/edit-icon.svg') no-repeat;
+    }
+    &.button_add {
+        background: url('./assets/icons/add-icon.svg') no-repeat;
+    }
+    &.button_remove,
+    &.button_edit,
+    &.button_add {
+        min-width: 50px;
+        min-height: 50px;
+        background-position: center center;
+        background-size: 35px 35px;
+    }
+    &:hover {
+        opacity: 0.7;
+    }
+}
