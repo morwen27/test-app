@@ -1,4 +1,2 @@
-<app-person [persons]="persons$ | async">
-
-</app-person>
+<app-person [persons]="persons" (editingPerson)="editPerson($event)" (removingPerson)="removePerson($event)"></app-person>
 <button class="button button_add"></button>

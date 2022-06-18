@@ -1,40 +1,30 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { Person } from '../models/person';
 
 @Injectable()
 export class PersonService {
-  private readonly url: string = '/posts/1';
-  private persons: Person[] = [
-    {
-      id: 1,
-      firstName: 'Alex',
-      lastName: 'Pushkin',
-    },
-    {
-      id: 2,
-      firstName: 'Victor',
-      lastName: 'Hugo',
-    },
-    {
-      id: 3,
-      firstName: 'Howard',
-      lastName: 'Lovecraft',
-    },
-  ];
+  private readonly personsUrl: string = 'http://localhost:3000/api/v1';
 
+  private readonly httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
+  
   constructor(private readonly http: HttpClient) { }
 
   getPersons(): Observable<Person[]> {
-    return of(this.persons);
-    // return this.http.get<Person[]>(this.url).pipe(map((persons) => persons));
+    return this.http.get<Person[]>(`${this.personsUrl}/persons`);
   }
 
-  getPerson(id: number) { }
+  editPerson(person: Person): void {
+    
+   }
 
-  editPerson(id: number) { }
-
-  deletePerson(id: number) { }
+  removePerson(person: Person): Observable<Person> {
+    const url = `http://localhost:3000/persons/${person.id}`;
+    
+    return this.http.delete<Person>(url, this.httpOptions);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Observable, Subject, takeUntil } from 'rxjs';
 import { Person } from '../../models/person';
 
@@ -10,7 +10,14 @@ import { Person } from '../../models/person';
 export class PersonComponent {
   @Input() persons: Person[] | null = [];
 
-  constructor() {
-    console.log(this.persons);
+  @Output() editingPerson: EventEmitter<Person> = new EventEmitter();
+  @Output() removingPerson: EventEmitter<Person> = new EventEmitter();
+
+  editPerson(person: Person) { 
+    this.editingPerson.emit(person)
+  }
+
+  removePerson(person: Person) {
+    this.removingPerson.emit(person)
   }
 }

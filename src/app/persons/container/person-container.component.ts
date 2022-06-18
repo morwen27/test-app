@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit,  } from '@angular/core';
 import { PersonService } from '../../services/person.service';
 import { Person } from '../../models/person';
 import { map, takeUntil } from 'rxjs/operators';
@@ -9,19 +9,30 @@ import { Observable, Subject } from 'rxjs';
   templateUrl: './person-container.component.html',
   styleUrls: ['./person-container.component.scss'],
 })
-export class PersonContainerComponent {
-  private readonly destoyed$ = new Subject();
+export class PersonContainerComponent implements OnInit, OnDestroy {
+  private readonly destroyed$ = new Subject();
 
-  readonly persons$: Observable<Person[]> = this.personService
-    .getPersons()
-    .pipe(
-      takeUntil(this.destoyed$),
-      map((persons) => persons)
-    );
+  persons: Person[] = [];
 
   constructor(private readonly personService: PersonService) { }
 
-  ngOnDestroy() {
-    this.destoyed$.next;
+  ngOnInit(): void {
+    this.personService.getPersons()
+      .pipe(
+        takeUntil(this.destroyed$)
+      ).subscribe(persons => this.persons = persons);
+  }
+
+  editPerson(person: Person) {
+    this.personService.editPerson(person);
+  }
+
+  removePerson(person: Person) {
+    this.personService.removePerson(person)
+      .subscribe(() => this.persons = this.persons.filter(item => item !== person));
+  }
+
+  ngOnDestroy(): void { 
+    this.destroyed$.next;
   }
 }

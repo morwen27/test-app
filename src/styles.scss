@@ -49,10 +49,10 @@ ul {
     &.button_remove,
     &.button_edit,
     &.button_add {
-        min-width: 50px;
-        min-height: 50px;
+        min-width: 40px;
+        min-height: 40px;
         background-position: center center;
-        background-size: 35px 35px;
+        background-size: 70% 70%;
     }
     &:hover {
         opacity: 0.7;
