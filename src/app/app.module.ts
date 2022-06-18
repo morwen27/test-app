@@ -2,8 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { PersonContainerComponent } from './container/person-container/person-container.component';
-import { PersonComponent } from './person/person.component';
+import { PersonComponent } from './persons/component/person.component';
+import { PersonContainerComponent } from './persons/container/person-container.component';
+import { PersonService } from './services/person.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { PersonComponent } from './person/person.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [PersonService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
