@@ -1,0 +1,12 @@
+.persons-list {
+    margin: 30px 0;
+    .person-list__item {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 15px;
+        padding: 25px 15px 25px 70px;
+        border-radius: 10px;
+        background: url('../../../assets/icons/user-icon.svg') no-repeat 15px center;
+        box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.2);
+    }
+}

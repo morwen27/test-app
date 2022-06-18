@@ -1,1 +1,9 @@
-<p>person works!</p>
+<ul *ngIf="persons" class="persons-list">
+    <li *ngFor="let person of persons" class="person-list__item">
+        <span>{{ person.firstName }} {{ person.lastName }}</span>
+        <span class="button-wrapper">
+            <button type="button" class="button button_edit"></button>
+            <button type="button" class="button button_remove"></button>
+        </span>
+    </li>
+</ul>
