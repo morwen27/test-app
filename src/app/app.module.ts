@@ -9,6 +9,7 @@ import { PersonContainerComponent } from './persons/container/person-container.c
 import { PersonService } from './services/person.service';
 import { RefModalDirective } from './directives/ref-modal.directive';
 import { ModalComponent } from './modal/modal.component';
+import { NotificationsService } from './services/notifications.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import { ModalComponent } from './modal/modal.component';
   imports: [
     BrowserModule, HttpClientModule, ReactiveFormsModule, FormsModule
   ], 
-  providers: [PersonService],
+  providers: [PersonService, NotificationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

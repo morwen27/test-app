@@ -1,19 +1,9 @@
 {
   "persons": [
     {
-      "firstName": "Иван",
-      "lastName": "Иванов",
-      "id": 1
-    },
-    {
-      "firstName": "Петр",
-      "lastName": "Петров",
-      "id": 2
-    },
-    {
-      "firstName": "Федор",
-      "lastName": "Федорович",
-      "id": 3
+      "id": 1,
+      "firstName": "Иванt",
+      "lastName": "Иванов"
     }
   ]
 }
