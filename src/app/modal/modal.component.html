@@ -1,14 +1,17 @@
 <div class="modal">
-    <h2 class="modal__title">{{ titles.modal }}</h2>
+    <h2 class="modal__title">{{ options.modal }}</h2>
     <div class="modal__container">
-        <label for="">
-            <span class="label__title #firstName">Имя</span>
-            <input type="text">
-        </label>
-        <label for="">
-            <span class="label__title #lastName">Фамилия</span>
-            <input type="text">
-        </label>
+        <form [formGroup]="personForm">
+            <label for="firstName">
+                <span class="label__title">Имя</span>
+                <input type="text" formControlName="firstName" id="firstName">
+            </label>
+            <label for="lastName">
+                <span class="label__title">Фамилия</span>
+                <input type="text" formControlName="lastName" id="lastName">
+            </label>
+        </form>
     </div>
-    <button class="button button_title button_modal" (click)="onClick.emit()">{{ titles.button }}</button>
+    <button type="submit" [disabled]="personForm.invalid" class="button button_title button_modal" (click)="onSubmit(personForm.value)">{{ options.button }}</button>
+    <button type="button" class="button button_title button_modal" (click)="onClose.emit()">Закрыть</button>
 </div>

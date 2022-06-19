@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PersonComponent } from './persons/component/person.component';
@@ -14,10 +15,11 @@ import { ModalComponent } from './modal/modal.component';
     AppComponent,
     PersonContainerComponent,
     PersonComponent,
-    RefModalDirective
+    RefModalDirective,
+    ModalComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule
+    BrowserModule, HttpClientModule, ReactiveFormsModule, FormsModule
   ], 
   providers: [PersonService],
   bootstrap: [AppComponent]
