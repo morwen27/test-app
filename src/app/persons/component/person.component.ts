@@ -17,11 +17,7 @@ export class PersonComponent {
     this.editingPerson.emit(person)
   }
 
-  removePerson(person: Person) {
+  removePerson(person: Person) {       
     this.removingPerson.emit(person)
-  }
-
-  addPerson(person: Person) { 
-    
   }
 }

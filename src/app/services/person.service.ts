@@ -6,7 +6,7 @@ import { Person } from '../models/person';
 
 @Injectable()
 export class PersonService {
-  private readonly personsUrl: string = 'http://localhost:3000/api/v1';
+  private readonly personsUrl: string = 'http://localhost:3000/persons'; 
 
   private readonly httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,16 +15,18 @@ export class PersonService {
   constructor(private readonly http: HttpClient) { }
 
   getPersons(): Observable<Person[]> {
-    return this.http.get<Person[]>(`${this.personsUrl}/persons`);
+    return this.http.get<Person[]>(this.personsUrl);
   }
 
-  editPerson(person: Person): void {
-    
+  editPerson(person: Person): Observable<Person> {
+    return this.http.put<Person>(`${this.personsUrl}/${person.id}`, person, this.httpOptions);
+  }
+  
+  addPerson(person: Person): Observable<Person> {
+    return this.http.post<Person>(this.personsUrl, person, this.httpOptions);    
    }
 
-  removePerson(person: Person): Observable<Person> {
-    const url = `http://localhost:3000/persons/${person.id}`;
-    
-    return this.http.delete<Person>(url, this.httpOptions);
+  removePerson(person: Person): Observable<Person> {    
+    return this.http.delete<Person>(`${this.personsUrl}/${person.id}`, this.httpOptions);
   }
 }

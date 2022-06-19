@@ -1,4 +1,4 @@
-<app-person [persons]="persons" (editingPerson)="editPerson" (removingPerson)="removePerson"></app-person>
+<app-person [persons]="persons" (editingPerson)="editPerson($event)" (removingPerson)="removePerson($event)"></app-person>
 <button class="button button_add" (click)="addPerson()"></button>
 
 <ng-template appRefModal></ng-template>
