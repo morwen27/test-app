@@ -20,4 +20,8 @@ export class PersonComponent {
   removePerson(person: Person) {
     this.removingPerson.emit(person)
   }
+
+  addPerson(person: Person) { 
+    
+  }
 }
