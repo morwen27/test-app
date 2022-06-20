@@ -24,7 +24,8 @@ export class ModalComponent implements OnInit {
     this.onClick.emit({
       id: this.options.person?.id,
       ...formValues
-    })
+    });
+    this.personForm.reset();
   }
 
   ngOnInit() {     
