@@ -5,7 +5,8 @@ import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { RefModalDirective } from 'src/app/directives/ref-modal.directive';
-import { Modal } from 'src/app/models/modal';
+import { Modal, ModalType } from 'src/app/models/modal';
+import { ModalService } from 'src/app/services/modal.service';
 
 @Component({
   selector: 'app-person-container',
@@ -15,13 +16,14 @@ import { Modal } from 'src/app/models/modal';
 export class PersonContainerComponent implements OnInit, OnDestroy {
   private readonly destroyed$ = new Subject();
 
-  @ViewChild(RefModalDirective) private viewRefModal!: RefModalDirective;
-  private modal!: ComponentRef<ModalComponent>;
+  // @ViewChild(RefModalDirective) private viewRefModal!: RefModalDirective;
+  // private modal!: ComponentRef<ModalComponent>;
 
   persons: Person[] = [];
 
   constructor(
-    private readonly personService: PersonService
+    private readonly personService: PersonService,
+    private readonly modalService: ModalService,
   ) {}
 
   ngOnInit(): void {
@@ -32,12 +34,13 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   addPerson(): void { 
-    this.openModal({
+    const modal = this.modalService.openModal({
       modal: 'Добавление сотрудника',
-      button: 'Добавить'
+      button: 'Добавить',
+      type: ModalType.add
     });
 
-    this.modal.instance.onClick.subscribe((person) => {
+    modal.onClick.subscribe((person) => {
       this.personService.addPerson({
         id: this.persons.length + 1,
         ...person
@@ -48,12 +51,14 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   editPerson(person: Person) {
-    this.openModal({
+    const modal = this.modalService.openModal({
       modal: 'Изменение данных сотрудника',
       button: 'Изменить',
-      person: person
+      person: person,
+      type: ModalType.edit
     });
-    this.modal.instance.onClick.subscribe((person) => {      
+
+    modal.onClick.subscribe((person) => {      
       this.personService.editPerson(person).pipe(
         takeUntil(this.destroyed$)
       ).subscribe(person => {
@@ -64,28 +69,17 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   removePerson(person: Person) {
-    this.openModal({
+    const modal = this.modalService.openModal({
       modal: 'Удаление сотрудника',
       button: 'Удалить',
-      person: person
+      person: person,
+      type: ModalType.remove
     });
-    this.modal.instance.onClick.subscribe(() => {
+
+    modal.onClick.subscribe(() => {
       this.personService.removePerson(person)
         .subscribe(() => this.persons = this.persons.filter(item => item !== person));
     });    
-  }
-
-  openModal(options: Modal) { 
-    if (this.viewRefModal) {
-      this.viewRefModal.containerRef.clear();
-
-      this.modal = this.viewRefModal.containerRef.createComponent(ModalComponent);
-      this.modal.instance.options = options;
-      
-      this.modal.instance.onClose.subscribe(() => {
-        if (this.viewRefModal) this.viewRefModal.containerRef.clear();
-      });
-    }
   }
 
   ngOnDestroy(): void { 
