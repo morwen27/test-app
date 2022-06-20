@@ -10,19 +10,23 @@ import { PersonService } from './services/person.service';
 import { RefModalDirective } from './directives/ref-modal.directive';
 import { ModalComponent } from './modal/modal.component';
 import { NotificationsService } from './services/notifications.service';
+import { NotificationDirective } from './directives/notification.directive';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PersonContainerComponent,
-    PersonComponent,
+    PersonComponent,       
+    ModalComponent,
+    NotificationComponent,
     RefModalDirective,
-    ModalComponent
+    NotificationDirective, 
   ],
   imports: [
     BrowserModule, HttpClientModule, ReactiveFormsModule, FormsModule
   ], 
-  providers: [PersonService, NotificationsService],
+  providers: [PersonService, NotificationsService, NotificationDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

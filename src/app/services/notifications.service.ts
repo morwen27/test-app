@@ -1,22 +1,40 @@
 import { Injectable, ViewChild } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ResponseStatus } from '../models/response-status';
+import { interval, Observable, of, takeUntil, timer } from 'rxjs';
+import { NotificationDirective } from '../directives/notification.directive';
+import { ResponseSelectors, ResponseStatus } from '../models/response-status';
+import { NotificationComponent } from '../notification/notification.component';
+
+const LIFE_TIME_NOTIFICATION = 5000;
 
 @Injectable()
 export class NotificationsService {
 
-  handleSuccess<T>(operation: string) {
-    console.log(operation)
+  handleSuccess<T>(message: string) {
+    this.showNotification(message, ResponseSelectors[1])
    }
   
   handleError<T>(result?: T) {
     return (error: any): Observable<T> => {
-      console.error(`${error.status}`);
+      this.showNotification(ResponseStatus[error.status], ResponseSelectors[2]);
       return of(result as T);
     };
   }
 
-  showNotification() { 
+  constructor(
+    private readonly notificationDirective: NotificationDirective
+  ) {}
 
+  showNotification(message: string, selector: string) { 
+    this.notificationDirective.containerRef.clear();
+
+    const notification = this.notificationDirective.containerRef.createComponent(NotificationComponent);
+    notification.instance.notification = {
+      message: message,
+      class: selector
+    }
+
+    timer(LIFE_TIME_NOTIFICATION)
+      .pipe(takeUntil(notification.instance.destroyed$))
+      .subscribe(() => this.notificationDirective.containerRef.clear())
   }
 }
