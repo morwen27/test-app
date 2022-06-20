@@ -1,7 +1,7 @@
-import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewChild, ViewContainerRef,  } from '@angular/core';
+import { Component, ComponentRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { PersonService } from '../../services/person.service';
 import { Person } from '../../models/person';
-import { map, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Observable, Subject } from 'rxjs';
 import { ModalComponent } from 'src/app/modal/modal.component';
 import { RefModalDirective } from 'src/app/directives/ref-modal.directive';
