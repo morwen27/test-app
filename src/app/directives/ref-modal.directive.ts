@@ -6,5 +6,5 @@ import { Directive, ViewContainerRef } from '@angular/core';
 export class RefModalDirective {
   constructor(
     public containerRef: ViewContainerRef
-  ) { }
+  ) {}
 }

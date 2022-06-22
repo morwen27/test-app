@@ -1,6 +1,6 @@
-import { Component, EventEmitter, AfterViewChecked, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Modal } from '../models/modal';
+import { Modal, ModalType } from '../models/modal';
 import { Person } from '../models/person';
 
 @Component({
@@ -9,29 +9,51 @@ import { Person } from '../models/person';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit {
+  @ViewChild('firstInput') firstInput!: ElementRef;
+
   options: Modal = {
     modal: '',
     button: '',
-    person: undefined
+    person: undefined,
+    type: undefined
   }   
 
   @Output() onClick = new EventEmitter<any>();
   @Output() onClose = new EventEmitter<any>();
 
-  personForm!: FormGroup; 
+  personForm!: FormGroup;
+  isAddType!: boolean;
 
   onSubmit(formValues: Person) { 
     this.onClick.emit({
       id: this.options.person?.id,
       ...formValues
     });
+    if (!this.isAddType) { 
+      this.onClose.emit();
+    }
     this.personForm.reset();
+    this.firstInput.nativeElement.focus();
   }
 
   ngOnInit() {     
     this.personForm = new FormGroup({
-      firstName: new FormControl(this.options.person ? this.options.person.firstName : '', Validators.required),
-      lastName: new FormControl(this.options.person ? this.options.person.lastName : '', Validators.required),
-    });    
+      firstName: new FormControl(
+        this.options.person ?
+          this.options.person.firstName : '',
+        Validators.required),
+      lastName: new FormControl(
+        this.options.person ?
+          this.options.person.lastName : '',
+        Validators.required),
+    });
+    
+    this.isAddType = this.options.type === ModalType.add;
+  }
+
+  ngAfterViewInit() {
+    if (this.options.type !== ModalType.remove) { 
+      this.firstInput.nativeElement.focus()
+    }    
   }
 }
