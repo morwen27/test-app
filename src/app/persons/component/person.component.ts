@@ -8,7 +8,7 @@ import { Person } from '../../models/person';
   styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent {
-  @Input() persons: Person[] | null = [];
+  @Input() persons: Person[] = [];
 
   @Output() editingPerson: EventEmitter<Person> = new EventEmitter();
   @Output() removingPerson: EventEmitter<Person> = new EventEmitter();

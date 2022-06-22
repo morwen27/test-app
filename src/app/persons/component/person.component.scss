@@ -10,4 +10,12 @@
         background: url('../../../assets/icons/user-icon.svg') no-repeat 15px center;
         box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.2);
     }
+    &.persons-list_empty {
+        display: inline-block;
+        vertical-align: baseline;
+        margin: 0 0 15px;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 4px 0px rgba(34, 60, 80, 0.2);
+    }
 }
