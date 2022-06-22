@@ -1,5 +1,5 @@
-import { Injectable, ViewChild } from '@angular/core';
-import { interval, Observable, of, takeUntil, timer } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { Observable, of, takeUntil, timer } from 'rxjs';
 import { NotificationDirective } from '../directives/notification.directive';
 import { ResponseSelectors, ResponseStatus } from '../models/response-status';
 import { NotificationComponent } from '../notification/notification.component';
@@ -25,7 +25,7 @@ export class NotificationsService {
   ) {}
 
   showNotification(message: string, selector: string) { 
-    this.notificationDirective.containerRef.clear();
+    this.notificationDirective.containerRef.clear();  
 
     const notification = this.notificationDirective.containerRef.createComponent(NotificationComponent);
     notification.instance.notification = {
@@ -35,6 +35,8 @@ export class NotificationsService {
 
     timer(LIFE_TIME_NOTIFICATION)
       .pipe(takeUntil(notification.instance.destroyed$))
-      .subscribe(() => this.notificationDirective.containerRef.clear())
+      .subscribe(() => {         
+        this.notificationDirective.containerRef.clear()
+      })
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { Person } from '../models/person';
 import { NotificationsService } from './notifications.service';
 import { ResponseStatus } from '../models/response-status';

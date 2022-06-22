@@ -12,7 +12,6 @@ import { ModalComponent } from './modal/modal.component';
 import { NotificationsService } from './services/notifications.service';
 import { NotificationDirective } from './directives/notification.directive';
 import { NotificationComponent } from './notification/notification.component';
-import { ModalService } from './services/modal.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +26,7 @@ import { ModalService } from './services/modal.service';
   imports: [
     BrowserModule, HttpClientModule, ReactiveFormsModule, FormsModule
   ], 
-  providers: [PersonService, NotificationsService, ModalService, NotificationDirective, RefModalDirective],
+  providers: [PersonService, NotificationsService, NotificationDirective],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
