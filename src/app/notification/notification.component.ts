@@ -5,12 +5,7 @@ import { Notification } from "../models/notification";
 
 @Component({
   selector: 'app-notification',
-  template: `
-    <div class="notification" [ngClass]="notification.class">
-        <p class="notification__message">{{notification.message}}
-        </p>
-    </div>
-  `,
+  templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss']
 })
 

@@ -1,13 +1,9 @@
-import { Directive, OnDestroy, ViewContainerRef } from '@angular/core';
-import { Subject, timer } from 'rxjs';
+import { Directive, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[notifications]'
 })
-export class NotificationDirective { 
-  destroyed$ = new Subject();
-
-  constructor(
+export class NotificationDirective {       constructor(
     public containerRef: ViewContainerRef
   ) {}
 }
