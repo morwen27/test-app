@@ -1,23 +1,20 @@
-import { Component, ComponentRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PersonService } from '../../services/person.service';
 import { Person } from '../../models/person';
 import { takeUntil } from 'rxjs/operators';
-import { Observable, Subject } from 'rxjs';
-import { ModalComponent } from 'src/app/modal/modal.component';
-import { RefModalDirective } from 'src/app/directives/ref-modal.directive';
-import { Modal, ModalType } from 'src/app/models/modal';
+import { Subject } from 'rxjs';
+import { ModalType } from 'src/app/models/modal';
 import { ModalService } from 'src/app/services/modal.service';
+import { RefModalDirective } from 'src/app/directives/ref-modal.directive';
 
 @Component({
   selector: 'app-person-container',
   templateUrl: './person-container.component.html',
   styleUrls: ['./person-container.component.scss'],
+  providers: [ModalService, RefModalDirective],
 })
 export class PersonContainerComponent implements OnInit, OnDestroy {
   private readonly destroyed$ = new Subject();
-
-  // @ViewChild(RefModalDirective) private viewRefModal!: RefModalDirective;
-  // private modal!: ComponentRef<ModalComponent>;
 
   persons: Person[] = [];
 
@@ -26,7 +23,7 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
     private readonly modalService: ModalService,
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.personService.getPersons()
       .pipe(
         takeUntil(this.destroyed$)
@@ -34,11 +31,7 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   addPerson(): void { 
-    const modal = this.modalService.openModal({
-      modal: 'Добавление сотрудника',
-      button: 'Добавить',
-      type: ModalType.add
-    });
+    const modal = this.modalService.openModal(ModalType.add);
 
     modal.onClick.subscribe((person) => {
       this.personService.addPerson({
@@ -51,12 +44,7 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   editPerson(person: Person) {
-    const modal = this.modalService.openModal({
-      modal: 'Изменение данных сотрудника',
-      button: 'Изменить',
-      person: person,
-      type: ModalType.edit
-    });
+    const modal = this.modalService.openModal(ModalType.edit, person);
 
     modal.onClick.subscribe((person) => {      
       this.personService.editPerson(person).pipe(
@@ -69,12 +57,7 @@ export class PersonContainerComponent implements OnInit, OnDestroy {
   }
 
   removePerson(person: Person) {
-    const modal = this.modalService.openModal({
-      modal: 'Удаление сотрудника',
-      button: 'Удалить',
-      person: person,
-      type: ModalType.remove
-    });
+    const modal = this.modalService.openModal(ModalType.remove, person);    
 
     modal.onClick.subscribe(() => {
       this.personService.removePerson(person)
