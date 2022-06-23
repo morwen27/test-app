@@ -18,7 +18,6 @@
  * BROWSER POLYFILLS
  */
 import 'classlist.js'; 
-import 'core-js/es6/reflect';
 import 'web-animations-js'; 
 
 /**

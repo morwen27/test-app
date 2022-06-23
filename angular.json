@@ -34,9 +34,6 @@
                     },
                     "configurations": {
                         "production": {
-                            "es5": {
-                                "tsConfig": "./tsconfig-es5.app.json"
-                            },
                             "budgets": [{
                                     "type": "initial",
                                     "maximumWarning": "500kb",
@@ -61,6 +58,9 @@
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true
+                        },
+                        "es5": {
+                            "tsConfig": "./tsconfig-es5.app.json"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -73,12 +73,12 @@
                         },
                         "development": {
                             "browserTarget": "test-app:build:development"
+                        },
+                        "es5": {
+                            "browserTarget": "test-app:build:es5"
                         }
                     },
-                    "defaultConfiguration": "development",
-                    "es5": {
-                        "browserTarget": "testApp:build:es5"
-                    }
+                    "defaultConfiguration": "development"
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
