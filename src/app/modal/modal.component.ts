@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Modal, ModalType } from '../models/modal';
 import { Person } from '../models/person';
@@ -23,6 +23,8 @@ export class ModalComponent implements OnInit {
 
   personForm!: FormGroup;
   isAddType!: boolean;
+
+  // @HostListener
 
   onSubmit(formValues: Person) { 
     this.onClick.emit({
