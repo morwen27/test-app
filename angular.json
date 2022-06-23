@@ -35,7 +35,7 @@
                     "configurations": {
                         "production": {
                             "es5": {
-                                "tsCongig": "./tsconfig-es5.app.json"
+                                "tsConfig": "./tsconfig-es5.app.json"
                             },
                             "budgets": [{
                                     "type": "initial",
