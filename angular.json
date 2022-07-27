@@ -58,7 +58,7 @@
                             "extractLicenses": false,
                             "sourceMap": true,
                             "namedChunks": true
-                        },
+                        }
                     },
                     "defaultConfiguration": "production"
                 },
@@ -78,6 +78,15 @@
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
                         "browserTarget": "test-app:build"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-eslint/builder:lint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "src/**/*.ts",
+                            "src/**/*.component.html"
+                        ]
                     }
                 },
                 "test": {

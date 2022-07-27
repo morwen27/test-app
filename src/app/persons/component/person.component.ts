@@ -1,23 +1,23 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
-import { Observable, Subject, takeUntil } from 'rxjs';
-import { Person } from '../../models/person';
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { Observable, Subject, takeUntil } from 'rxjs'
+import { Person } from '../../models/person'
 
 @Component({
-  selector: 'app-person',
-  templateUrl: './person.component.html',
-  styleUrls: ['./person.component.scss'],
+    selector: 'app-person',
+    templateUrl: './person.component.html',
+    styleUrls: ['./person.component.scss'],
 })
 export class PersonComponent {
-  @Input() persons: Person[] = [];
+    @Input() persons: Person[] = []
 
-  @Output() editingPerson: EventEmitter<Person> = new EventEmitter();
-  @Output() removingPerson: EventEmitter<Person> = new EventEmitter();
+    @Output() editingPerson: EventEmitter<Person> = new EventEmitter()
+    @Output() removingPerson: EventEmitter<Person> = new EventEmitter()
 
-  editPerson(person: Person) { 
-    this.editingPerson.emit(person)
-  }
+    editPerson(person: Person) {
+        this.editingPerson.emit(person)
+    }
 
-  removePerson(person: Person) {       
-    this.removingPerson.emit(person)
-  }
+    removePerson(person: Person) {
+        this.removingPerson.emit(person)
+    }
 }

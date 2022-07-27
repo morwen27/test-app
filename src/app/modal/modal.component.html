@@ -12,6 +12,8 @@
             </label>
         </form>
     </div>
-    <button type="submit" [disabled]="personForm.invalid" class="button button_title button_modal" (click)="onSubmit(personForm.value)">{{ options.button }}</button>
-    <button type="button" class="button button_title button_modal" (click)="onClose.emit()">Закрыть</button>
+    <button type="submit" [disabled]="personForm.invalid" class="button button_title button_modal" (click)="onSubmit(personForm.value)">
+        {{ options.button }}
+    </button>
+    <button type="button" class="button button_title button_modal" (click)="closeEvent.emit()">Закрыть</button>
 </div>

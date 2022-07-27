@@ -19,6 +19,11 @@
       "firstName": "Саша",
       "lastName": "Сашкин",
       "id": 4
+    },
+    {
+      "firstName": "Кузя",
+      "lastName": "Кузьминкин",
+      "id": 5
     }
   ]
 }

@@ -1,9 +1,8 @@
-import { Directive, ViewContainerRef } from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core'
 
 @Directive({
-  selector: '[notifications]'
+    selector: '[notifications]',
 })
-export class NotificationDirective {       constructor(
-    public containerRef: ViewContainerRef
-  ) {}
+export class NotificationDirective {
+    constructor(public containerRef: ViewContainerRef) {}
 }

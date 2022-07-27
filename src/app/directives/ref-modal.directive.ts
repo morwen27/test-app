@@ -1,10 +1,8 @@
-import { Directive, ViewContainerRef } from '@angular/core';
+import { Directive, ViewContainerRef } from '@angular/core'
 
 @Directive({
-  selector: '[appRefModal]'
+    selector: '[appRefModal]',
 })
 export class RefModalDirective {
-  constructor(
-    public containerRef: ViewContainerRef
-  ) {}
+    constructor(public containerRef: ViewContainerRef) {}
 }
