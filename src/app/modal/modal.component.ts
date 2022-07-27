@@ -24,7 +24,10 @@ export class ModalComponent implements OnInit {
   personForm!: FormGroup;
   isAddType!: boolean;
 
-  // @HostListener
+  @HostListener('document:keydown.escape')
+  onEscHandler() {
+    this.onClose.emit();    
+  }
 
   onSubmit(formValues: Person) { 
     this.onClick.emit({
