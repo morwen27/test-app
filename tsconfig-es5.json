@@ -2,5 +2,9 @@
     "extends": "./tsconfig.app.json",
     "compilerOptions": {
         "target": "es5"
-    }
+    },
+    "files": [
+        "src/main.ts",
+        "src/polyfills.es5.ts"
+    ]
 }

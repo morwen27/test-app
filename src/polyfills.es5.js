@@ -18,8 +18,8 @@
  * BROWSER POLYFILLS
  */
 import 'core-js';
-import 'classlist.js'; 
-import 'web-animations-js'; 
+import 'classlist.js';
+import 'web-animations-js';
 
 /**
  * By default, zone.js will patch all possible macroTask and DomEvents
@@ -48,7 +48,7 @@ import 'web-animations-js';
 /***************************************************************************************************
  * Zone JS is required by default for Angular itself.
  */
-import 'zone.js';  // Included with Angular CLI.
+import 'zone.js'; // Included with Angular CLI.
 
 /***************************************************************************************************
  * APPLICATION IMPORTS

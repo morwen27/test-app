@@ -59,8 +59,15 @@
                             "sourceMap": true,
                             "namedChunks": true
                         },
-                        "es5": {
-                            "tsConfig": "./tsconfig-es5.app.json"
+                        "development-es5": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "tsConfig": "tsconfig-es5.json",
+                            "polyfills": "src/polyfills.es5.ts"
                         }
                     },
                     "defaultConfiguration": "production"
@@ -74,8 +81,8 @@
                         "development": {
                             "browserTarget": "test-app:build:development"
                         },
-                        "es5": {
-                            "browserTarget": "test-app:build:es5"
+                        "development-es5": {
+                            "browserTarget": "test-app:build:development-es5"
                         }
                     },
                     "defaultConfiguration": "development"
